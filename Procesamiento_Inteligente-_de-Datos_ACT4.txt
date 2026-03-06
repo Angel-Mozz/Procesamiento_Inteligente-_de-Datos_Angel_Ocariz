@@ -1,0 +1,5 @@
+Procesamiento_Inteligente-_de-Datos_Angel_Ocariz/Act4_CurvasDeRoc.ipynb at main · Angel-Mozz/Procesamiento_Inteligente-_de-Datos_Angel_Ocariz
+
+Procesamiento_Inteligente-_de-Datos_Angel_Ocariz/Act4_Ejemplo1.ipynb at main · Angel-Mozz/Procesamiento_Inteligente-_de-Datos_Angel_Ocariz
+
+Procesamiento_Inteligente-_de-Datos_Angel_Ocariz/binary_classification_rice.ipynb at main · Angel-Mozz/Procesamiento_Inteligente-_de-Datos_Angel_Ocariz
