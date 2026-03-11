@@ -10,7 +10,7 @@
 <body>
     <h2>Dibuja un número</h2>
     <canvas id="canvas" width="280" height="280" 
-            style="border:2px solid white; cursor:crosshair; background:black;"></canvas>
+            style="border:2px solid black; cursor:crosshair;"></canvas>
     <br><br>
     <button onclick="limpiar()">Limpiar</button>
     <button onclick="enviar()">Predecir</button>
@@ -20,8 +20,8 @@
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
 
-        // Fondo negro
-        ctx.fillStyle = 'black';
+        // Fondo blanco
+        ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         let painting = false;
@@ -37,7 +37,7 @@
             if (!painting) return;
             ctx.lineWidth = 18;
             ctx.lineCap = 'round';
-            ctx.strokeStyle = 'white';  // Trazo blanco como MNIST
+            ctx.strokeStyle = 'black';  // Trazo negro
             ctx.lineTo(e.offsetX, e.offsetY);
             ctx.stroke();
             ctx.beginPath();
@@ -45,7 +45,7 @@
         }
 
         function limpiar() {
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = 'white';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             $("#resultado").html("");
         }
@@ -53,13 +53,13 @@
         function enviar() {
             $("#resultado").html("Procesando...");
 
-            // Canvas temporal 28x28 con fondo negro
             let tempCanvas = document.createElement('canvas');
             tempCanvas.width = 28;
             tempCanvas.height = 28;
             let tempCtx = tempCanvas.getContext('2d');
 
-            tempCtx.fillStyle = 'black';
+            // Fondo blanco igual que el canvas principal
+            tempCtx.fillStyle = 'white';
             tempCtx.fillRect(0, 0, 28, 28);
             tempCtx.drawImage(canvas, 0, 0, 28, 28);
 
@@ -68,8 +68,8 @@
                 for (var y = 0; y < 28; y++) {
                     var imgData = tempCtx.getImageData(y, x, 1, 1);
                     var data = imgData.data;
-                    // Canal rojo normalizado (trazo blanco = valor alto)
-                    var color = data[0] / 255;
+                    // Inversión: negro(0) → 1.0, blanco(255) → 0.0
+                    var color = (255 - data[0]) / 255;
                     color = (Math.round(color * 100) / 100).toFixed(2);
                     pixels.push(color);
                 }
@@ -82,7 +82,6 @@
                 }
             ).fail(function(err) {
                 $("#resultado").html("Error: " + err.statusText);
-                console.error(err);
             });
         }
     </script>
